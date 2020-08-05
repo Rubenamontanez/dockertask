@@ -35,3 +35,14 @@ COPY index.html /var/www/html/index.html
 ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
 
 # TODO-5: Build from scratch : a centos7 container that runs an httpd server and displays a custom index.html that is stored in a local storage
+
+FROM centos:7
+
+RUN yum install httpd -y
+RUN yum -y install git 
+
+RUN git clone https://github.com/Rubenamontanez/dockertask.git
+
+COPY index.html /var/www/html/index.html
+
+ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
